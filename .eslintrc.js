@@ -1,5 +1,5 @@
-// const OFF = 0;
-// const WARN = 1;
+const OFF = 0;
+const WARN = 1;
 const ERROR = 2;
 
 module.exports = {
@@ -12,11 +12,11 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+      impliedStrict: true, // 严格模式
     },
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'unicorn', 'promise', '@typescript-eslint'],
   extends: [
     'airbnb',
     'airbnb/hooks',
@@ -24,7 +24,12 @@ module.exports = {
     'plugin:unicorn/recommended',
     'plugin:promise/recommended',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/react',
+    'prettier/unicorn',
   ],
+  plugins: ['react', 'unicorn', 'promise', '@typescript-eslint'],
   rules: {
     'import/extensions': [
       ERROR,
@@ -36,6 +41,23 @@ module.exports = {
         js: 'never',
       },
     ],
+    'unicorn/filename-case': [
+      ERROR,
+      {
+        cases: {
+          // 中划线
+          kebabCase: true,
+          // 小驼峰
+          camelCase: true,
+          // 下划线
+          snakeCase: false,
+          // 大驼峰
+          pascalCase: true,
+        },
+      },
+    ],
+    '@typescript-eslint/explicit-module-boundary-types': OFF,
+    'no-console': WARN,
   },
   settings: {
     'import/resolver': {

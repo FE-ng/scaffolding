@@ -1,4 +1,4 @@
-import Lova from './Other';
+import Lova from './other';
 
 const add = (a, b) => {
   console.log(a + b);

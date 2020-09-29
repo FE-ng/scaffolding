@@ -1,4 +1,5 @@
-const love = () => {
-  console.log('%c test', 'color: blue;', 1);
+const Love = () => {
+  console.log('%c test', 'color: blue;');
 };
-export default love;
+
+export default Love;
