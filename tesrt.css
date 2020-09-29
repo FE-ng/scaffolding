@@ -1,6 +1,7 @@
 .index {
   color: red;
 }
+
 .child .uuu::before {
   width: 200px;
 }

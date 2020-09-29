@@ -1,18 +1,13 @@
+// const OFF = 0;
+// const WARN = 1;
+const ERROR = 2;
+
 module.exports = {
   env: {
     browser: true,
     es2021: true,
     node: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
-    'prettier/unicorn',
-    'prettier/@typescript-eslint',
-  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -21,6 +16,32 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  plugins: ['react', 'unicorn', 'promise', '@typescript-eslint'],
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:unicorn/recommended',
+    'plugin:promise/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
+  rules: {
+    'import/extensions': [
+      ERROR,
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+        json: 'never',
+        js: 'never',
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.tsx', '.ts', '.js', '.json'],
+      },
+    },
+  },
 };
