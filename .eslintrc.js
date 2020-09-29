@@ -8,6 +8,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  //  ESLint 默认使用 Espree 无法识别 TypeScript 的一些语法，所以需要ts中的解析器
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -30,6 +31,13 @@ module.exports = {
     'prettier/unicorn',
   ],
   plugins: ['react', 'unicorn', 'promise', '@typescript-eslint'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.tsx', '.ts', '.js', '.json'],
+      },
+    },
+  },
   rules: {
     'import/extensions': [
       ERROR,
@@ -58,12 +66,5 @@ module.exports = {
     ],
     '@typescript-eslint/explicit-module-boundary-types': OFF,
     'no-console': WARN,
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.tsx', '.ts', '.js', '.json'],
-      },
-    },
   },
 };
