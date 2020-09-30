@@ -45,8 +45,25 @@ module.exports = {
       {
         ts: 'never',
         tsx: 'never',
-        json: 'never',
         js: 'never',
+      },
+    ],
+    'import/no-unresolved': ERROR,
+    '@typescript-eslint/no-var-requires': OFF,
+    'unicorn/prevent-abbreviations': OFF,
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: true, optionalDependencies: false, peerDependencies: false },
+    ],
+    'unicorn/import-style': [
+      ERROR,
+      {
+        styles: {
+          util: false,
+          path: {
+            named: true,
+          },
+        },
       },
     ],
     'unicorn/filename-case': [
