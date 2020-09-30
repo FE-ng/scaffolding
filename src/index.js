@@ -1,3 +1,7 @@
+import './index.css';
+import './index.less';
+import './test.css';
+
 class Animal {
   constructor(name) {
     this.name = name;

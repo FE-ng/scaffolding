@@ -9,3 +9,7 @@
 .test {
   color: aliceblue;
 }
+
+#root {
+  font-size: 20px;
+}

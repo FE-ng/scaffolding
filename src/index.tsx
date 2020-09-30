@@ -1,3 +1,5 @@
+import Img from './assets/img/subway.jpg';
+
 interface IAnimal {
   name: string;
 }

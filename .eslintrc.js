@@ -83,5 +83,6 @@ module.exports = {
     ],
     '@typescript-eslint/explicit-module-boundary-types': OFF,
     'no-console': WARN,
+    'global-require': OFF,
   },
 };
