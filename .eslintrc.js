@@ -36,6 +36,7 @@ module.exports = {
       node: {
         extensions: ['.tsx', '.ts', '.js', '.json'],
       },
+      typescript: {},
     },
   },
   rules: {
@@ -81,8 +82,10 @@ module.exports = {
         },
       },
     ],
+    'react/jsx-filename-extension': [ERROR, { extensions: ['.tsx', 'ts', '.jsx', 'js'] }],
     '@typescript-eslint/explicit-module-boundary-types': OFF,
     'no-console': WARN,
     'global-require': OFF,
+    'no-use-before-define': OFF,
   },
 };

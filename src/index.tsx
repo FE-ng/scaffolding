@@ -1,19 +1,9 @@
-import Img from './assets/img/subway.jpg';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
 
-interface IAnimal {
-  name: string;
+if (module && module.hot) {
+  module.hot.accept();
 }
 
-class Animal {
-  name: string;
-
-  constructor(name) {
-    this.name = name;
-  }
-
-  getName() {
-    return this.name;
-  }
-}
-
-const dog = new Animal('dog');
+ReactDOM.render(<App />, document.querySelector('#root'));
