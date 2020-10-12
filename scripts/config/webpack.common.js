@@ -5,11 +5,12 @@ const CopyPlugin = require('copy-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { PROJECT_PATH, isDev } = require('../constants');
 
 const getCssLoaders = (importLoaders) => [
-  'style-loader',
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
@@ -159,5 +160,12 @@ module.exports = {
       },
     }),
     new HardSourceWebpackPlugin(),
-  ],
+    !isDev &&
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/[name].[contenthash:8].css',
+        ignoreOrder: false,
+      }),
+    !isDev && new OptimizeCssAssetsPlugin(),
+  ].filter(Boolean),
 };
