@@ -9,7 +9,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
-    host: SERVER_HOST, // 指定 host，不设置的话默认是 localhost
+    host: SERVER_HOST, // 指定 host，默认localhost
     port: SERVER_PORT, // 指定端口，默认是8080
     stats: 'errors-only', // 终端仅打印 error
     clientLogLevel: 'silent', // 日志等级
@@ -18,5 +18,5 @@ module.exports = merge(common, {
     hot: true, // 热更新
     proxy: { ...proxySetting },
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin()], // 局部替代刷新而不是重新请求
 });

@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { PROJECT_PATH, isDev } = require('../constants');
@@ -48,6 +47,7 @@ module.exports = {
   output: {
     filename: `js/[name]${isDev ? '' : '.[contenthash:8]'}.js`,
     path: resolve(PROJECT_PATH, './dist'),
+    pathinfo: false,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json'],
@@ -64,7 +64,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      name: true,
+      name: false,
     },
   },
   module: {
@@ -72,6 +72,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: getCssLoaders(1),
+        include: resolve(PROJECT_PATH, 'src'),
       },
       {
         test: /\.less$/,
@@ -84,6 +85,7 @@ module.exports = {
             },
           },
         ],
+        include: resolve(PROJECT_PATH, 'src'),
       },
       {
         test: [/\.(bmp|gif|.jpeg|png|jpg)$/],
@@ -97,6 +99,7 @@ module.exports = {
             },
           },
         ],
+        include: resolve(PROJECT_PATH, 'src'),
       },
       {
         test: /\.(ttf|woff|woff2|eot|otf)$/,
@@ -109,16 +112,33 @@ module.exports = {
             },
           },
         ],
+        include: resolve(PROJECT_PATH, 'src'),
       },
       {
         test: /\.(tsx?|js)$/,
-        loader: 'babel-loader',
-        options: { cacheDirectory: true },
+        use: [
+          {
+            loader: 'cache-loader',
+          },
+          { loader: 'babel-loader', options: { cacheDirectory: true } },
+        ],
+        include: resolve(PROJECT_PATH, 'src'),
         exclude: /node_modules/,
       },
     ],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          context: resolve(PROJECT_PATH, './public'),
+          from: '**/*',
+          to: resolve(PROJECT_PATH, './dist'),
+          toType: 'dir',
+          force: true,
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: resolve(PROJECT_PATH, './public/index.html'),
       filename: 'index.html',
@@ -140,16 +160,7 @@ module.exports = {
             useShortDoctype: true,
           },
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          context: resolve(PROJECT_PATH, './public'),
-          from: '*',
-          to: resolve(PROJECT_PATH, './dist'),
-          toType: 'dir',
-        },
-      ],
-    }),
+
     new WebpackBar({
       name: isDev ? '正在启动中...' : '正在打包中...',
       color: '#fa8c16',
@@ -159,7 +170,6 @@ module.exports = {
         configFile: resolve(PROJECT_PATH, './tsconfig.json'),
       },
     }),
-    new HardSourceWebpackPlugin(),
     !isDev &&
       new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash:8].css',
