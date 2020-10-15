@@ -160,7 +160,6 @@ module.exports = {
             useShortDoctype: true,
           },
     }),
-
     new WebpackBar({
       name: isDev ? '正在启动中...' : '正在打包中...',
       color: '#fa8c16',
