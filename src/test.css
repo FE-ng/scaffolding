@@ -1,3 +1,11 @@
 * {
   background-color: royalblue;
 }
+
+.bug {
+  display: flex;
+}
+
+.bugtest2c {
+  display: block;
+}
