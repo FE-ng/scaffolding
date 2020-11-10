@@ -17,3 +17,7 @@
 .unless {
   color: blueviolet;
 }
+
+.master_anotherC {
+  display: inline;
+}
