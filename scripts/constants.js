@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-10-09 17:06:36
+ * @LastEditTime: 2021-03-04 16:36:34
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /scaffolding/scripts/constants.js
+ */
 const path = require('path');
 
 const PROJECT_PATH = path.resolve(__dirname, '../');

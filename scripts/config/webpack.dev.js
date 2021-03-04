@@ -16,6 +16,7 @@ module.exports = merge(common, {
     compress: true, // 是否启用 gzip 压缩
     open: true, // 打开默认浏览器
     hot: true, // 热更新
+    inline: true,
     proxy: { ...proxySetting },
   },
   plugins: [new webpack.HotModuleReplacementPlugin()], // 局部替代刷新而不是重新请求

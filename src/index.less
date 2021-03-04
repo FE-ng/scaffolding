@@ -10,11 +10,33 @@
   color: aliceblue;
 }
 
-#root {
-  display: flex;
-  width: 400px;
-  height: 400px;
-  color: red;
-  background: url('./assets/img/subway.jpg') no-repeat;
-  background-size: contain;
+// #root {
+//   display: flex;
+//   width: 400px;
+//   height: 400px;
+//   color: red;
+//   background: url('./assets/img/subway.jpg') no-repeat;
+//   background-size: contain;
+// }
+
+.container {
+  position: relative;
+  width: 100vw;
+  min-height: 50vh;
+  background-color: aqua;
+
+  .map {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    background-color: yellow;
+  }
+
+  .routerInfo {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background-color: red;
+  }
 }

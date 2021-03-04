@@ -1,12 +1,10 @@
 {
   "editor.tabSize": 2,
-  "editor.autoIndent": "none",
   "typescript.locale": "zh-CN",
   "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#67d45b90",
+    "editor.lineHighlightBackground": "#8b945790",
     "editor.lineHighlightBorder": "#f8f2f230"
   },
-
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
@@ -52,5 +50,6 @@
   },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.words": ["yapi"]
 }

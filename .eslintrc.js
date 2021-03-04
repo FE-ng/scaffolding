@@ -84,8 +84,23 @@ module.exports = {
     ],
     'react/jsx-filename-extension': [ERROR, { extensions: ['.tsx', 'ts', '.jsx', 'js'] }],
     '@typescript-eslint/explicit-module-boundary-types': OFF,
+    // 优先使用 interface 而不是 type
+    '@typescript-eslint/consistent-type-definitions': [ERROR, 'interface'],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^I[A-Z]',
+          match: true,
+        },
+      },
+    ],
     'no-console': WARN,
     'global-require': OFF,
     'no-use-before-define': OFF,
+    'no-restricted-syntax': OFF,
+    'no-plusplus': OFF,
   },
 };

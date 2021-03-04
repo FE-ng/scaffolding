@@ -29,6 +29,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.11.2",
+    "@types/crypto-js": "^4.0.1",
+    "axios": "^0.21.0",
+    "crypto-js": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "webpack-merge": "^5.1.4"
