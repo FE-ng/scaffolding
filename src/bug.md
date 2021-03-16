@@ -1,11 +1,12 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-18 10:44:05
- * @LastEditTime: 2021-03-04 16:41:13
+ * @LastEditTime: 2021-03-12 11:18:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /scaffolding/src/bug.md
 -->
+
 1. react 中两个相同的组件使用了相同的 key 会导致删除时有着预期之外的问题
 2. key 值 card 上使用时会导致输入框输入失焦点
 3. button 和 ajax 混用会引起 request 请求中途取消;
@@ -78,3 +79,192 @@ new Array(16).join()
     .toString(36)[Math.random() < 0.5 ? 'toString' : 'toUpperCase']());
 
 ```
+
+``` js
+// // 每个字符转为二进制,用空格分隔
+//     const textToBinary = username => (
+//       username
+//       .split('')
+//       // charCodeAt 将字符转成相应的 Unicode 码值
+//       .map(char => char.charCodeAt(0).toString(2))
+//       .join(' ')
+//     );
+
+
+// const binaryToZeroWidth = binaryNum => 
+//   {
+//     const num = parseInt(binaryNum.charCodeAt(0).toString(2), 10);
+//     let resStr = '';
+//     if (num === 1) {
+//       resStr = '\u200b'; // \u200b 零宽度字符（zero-width space）
+//     } else if(num===0) {
+//       resStr = '\u200c'; // \u200c 零宽度断字符（zero-width non-joiner）
+//     }
+//     resStr = '\u200d'; // \u200d 零宽度连字符 (zero-width joiner)
+//     return `${resStr}`; // \ufeff 零宽度非断空格符 (zero width no-break space)
+//   }
+
+
+// const encode = username => {
+//   const binaryUsername = textToBinary(username);
+//   const zeroWidthUsername = binaryToZeroWidth(binaryUsername);
+//   return zeroWidthUsername;
+// };
+// copy(encode('真帅'))
+
+// const decode_my = encodeString => (
+//   encodeString.split('\ufeff').reduce(
+//     (a, b) => 
+//     String.fromCharCode(parseInt(a === '\u200b' ? '1' : '0', 2)) + 
+//     String.fromCharCode(parseInt(b === '\u200b' ? '1' : '0', 2))
+//     , '')
+// )
+
+// const zeroWidthToBinary = string => (
+//   string.split('\ufeff').map((char) => { // \ufeff 零宽度非断空格符 (zero width no-break space)
+//     if (char === '\u200b') { // \u200b 零宽度字符（zero-width space）
+//       return '1';
+//     } else if(char === '\u200c') { // \u200c 零宽度断字符（zero-width non-joiner）
+//       return '0';
+//     }
+//     return ' ';
+//   }).join('')
+// );
+
+// const binaryToText = string => (
+//   // fromCharCode 二进制转化
+//   string.split(' ').map(num => String.fromCharCode(parseInt(num, 2))).join('')
+// );
+// const decode = zeroWidthUsername => {
+//   const binaryUsername = zeroWidthToBinary(zeroWidthUsername);
+//   const textUsername = binaryToText(binaryUsername);
+//   return textUsername;
+// };
+
+
+
+// 每个字符转为二进制,用空格分隔
+  const textToBinary = username => (
+    username
+    .split('')
+    // charCodeAt 将字符转成相应的 Unicode 码值
+    .map(char => char.charCodeAt(0).toString(2))
+    .join(' ')
+  );
+  
+  const binaryToZeroWidth = binary => (
+  binary.split('').map((binaryNum) => {
+    const num = parseInt(binaryNum, 10);
+    if (num === 1) {
+      return '\u200b'; // \u200b 零宽度字符（zero-width space）
+    } else if(num===0) {
+      return '\u200c'; // \u200c 零宽度断字符（zero-width non-joiner）
+    }
+    return '\u200d'; // \u200d 零宽度连字符 (zero-width joiner)
+
+  }).join('\ufeff') // \ufeff 零宽度非断空格符 (zero width no-break space)
+);
+
+const encode = username => {
+  const binaryUsername = textToBinary(username);
+  const zeroWidthUsername = binaryToZeroWidth(binaryUsername);
+  return zeroWidthUsername;
+};
+
+const zeroWidthToBinary = string => (
+  string.split('\ufeff').map((char) => { // \ufeff 零宽度非断空格符 (zero width no-break space)
+    if (char === '\u200b') { // \u200b 零宽度字符（zero-width space）
+      return '1';
+    } else if(char === '\u200c') { // \u200c 零宽度断字符（zero-width non-joiner）
+      return '0';
+    }
+    return ' ';
+  }).join('')
+);
+
+const binaryToText = string => (
+  // fromCharCode 二进制转化
+  string.split(' ').map(num => String.fromCharCode(parseInt(num, 2))).join('')
+);
+
+const decode = zeroWidthUsername => {
+  const binaryUsername = zeroWidthToBinary(zeroWidthUsername);
+  const textUsername = binaryToText(binaryUsername);
+  return textUsername;
+};
+```
+
+https://www.office26.com/excelhanshu/excel_function_11341.html
+
+antd initialValue即defaultValue,只会在第一次赋值的时候改变，却又有一些不同，
+而我们使用赋初始值的时候 由于初始值是异步获取因此第一次赋值一般都是填写的默认值,
+但获取的数据重新上来要渲染的时候 ，initialValue的值却又不改变。
+
+解决办法 在操作完成后 直接重置表格 resetFields(); 让表格再次能自己赋值initialValue 
+
+ // 每个字符转
+
+ 
+
+
+
+
+ 1.scoms uat online
+2. 评审
+3.【仓库管理】仓库运营数据维护	 提测 
+4. 处理tms下发按钮系列,并在wiki上记录
+5. uat问题处理 筛选条件中修改收件区域时,字段没有重置;
+6. 处理页面table中包含select的选项 在各种操作之后的状态, 并在wiki上记录
+7. 将菜单中的image替换成为svg;
+
+
+2021年FE发展思路
+规则体系
+业务方向（50%）
+完成业务方向目标
+在业务线落地横向建设成果
+每落地一次积5分
+横向建设（50%）
+技术项目参与度
+核心责技术项目开发建设（50%）
+参与技术项目建设（平均分配剩余50%或由核心负责人分配）
+分享
+成为分享讲师 （5分）
+参与分享反馈（0.5分）
+培训
+成为培训讲师（5分）
+参与培训并通过测试（0.5分）
+博客
+原创博客（1分）
+推荐博客（0.5分）
+阅读博客并进行评论（0.1分）
+面试官
+参与面试1次（0.1分）
+团队建设
+带动组员参与技术项目
+无参与0分
+带动50%参与 （5分）
+带动100%参与 （10分）
+建议提案
+优秀提案 （1分）
+形成落地方案执行 （5分）
+其它重大突出贡献
+组委会case评价给予奖励
+FE品牌化建设
+从整合到聚合，形成产品矩阵
+1.通过官网合理规划模块
+2.分类划分
+工具类
+媒体类
+架构类
+文档类
+积分排行榜公示
+管理方法
+1.双周例会
+流程项目梳理
+团队情况说明
+参与技术项目的成员
+业务项目补充与介绍
+2.积分榜反向刺激
+3.半年度全员大会
+4.其它线下活动
