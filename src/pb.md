@@ -19,15 +19,6 @@
  *                        '.:::::'                    ':'````..
  -->
 
-<!--
- * @Author: your name
- * @Date: 2021-03-04 16:40:00
- * @LastEditTime: 2021-03-04 16:40:01
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /scaffolding/src/pb.md
--->
-
 
 
 # Protocol Buffer(protobuf)
