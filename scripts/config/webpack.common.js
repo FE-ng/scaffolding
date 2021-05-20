@@ -41,6 +41,7 @@ const getCssLoaders = (importLoaders) => [
 ];
 
 module.exports = {
+  target: 'web',
   entry: {
     app: resolve(PROJECT_PATH, './src/index.tsx'),
   },
