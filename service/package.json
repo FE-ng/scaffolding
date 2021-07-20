@@ -1,0 +1,19 @@
+{
+  "name": "node_email",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "email"
+  ],
+  "author": "lf",
+  "license": "ISC",
+  "dependencies": {
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.5.0"
+  }
+}

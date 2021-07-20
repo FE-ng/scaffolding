@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-10-09 17:06:36
- * @LastEditTime: 2021-03-04 16:38:20
- * @LastEditors: your name
+ * @LastEditTime: 2021-07-16 16:09:04
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /scaffolding/src/app.tsx
  */
@@ -71,7 +71,7 @@ function App() {
           显示footer
         </button>
       </Suspense> */}
-      wss testf1312fadfdff
+      wss testf1312fadfdfffasfasfasd
     </div>
   );
 }
